@@ -1,0 +1,238 @@
+
+.form-group {
+	margin-bottom: 8px !important;
+}
+
+.form-control {
+	padding: 2px 5px;
+	height: 30px;
+}
+
+.alert {
+  top: 60px;
+  position: fixed;
+  z-index: 1000;
+  right: 20px;
+ 
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";	/* IE 8 */
+  filter: alpha(opacity=90);											/* IE 5-7 */
+  -moz-opacity: 0.9;													/* Netscape */
+  -khtml-opacity: 0.9;													/* Safari 1.x */
+  opacity: 0.9;															/* Good browsers */
+}
+
+input.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
+
+select.form-control {
+  width: 300px;
+}
+
+.panel-footer {
+	text-align: right;
+}
+
+.panel-footer .dropdown-menu {
+	text-align: left;
+}
+
+a.link, a.link:hover, a.link:active, a.link:focus  {
+	color: #C12E2A;
+}
+
+.link {
+	padding: 0 4px;
+}
+
+.float-left {
+	display: block;
+    float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.link.fixed-width {
+	width: 80px;
+}
+
+input.search-box {
+	display: inline !important;
+	float: left;
+	width: 370px !important;
+	background: url("../images/magnifier.png") no-repeat scroll 340px 6px #FFFFFF;
+	padding-right: 30px !important;
+}
+
+button.search-box-button {
+	float: left;
+	margin-left: 10px;
+}
+
+.panel-body-scrollable {
+  height: 500px;
+  overflow-y: auto;
+}
+
+button.close {
+  margin-left: 10px;
+}
+
+.input-calendar {
+    width: 120px;
+}
+
+.number-column {
+	text-align: right;
+}
+
+.filter-select {
+  margin-top: 5px;
+}
+
+.lst-chx-container {
+	height: 320px !important; 
+	overflow-y: auto;
+}
+
+#txtUsuario {
+	width: 300px !important;
+}
+
+.navbar-brand {
+	padding: 6px !important;
+}
+
+.navbar-title {
+	margin-left: 10px;
+}
+
+.brand-logo {
+	margin: 0 20px;
+}
+
+.progress-usuario {
+	width: 250px !important;
+}
+
+.progress-sucursal {
+	width: 300px !important;
+}
+
+.progress {
+    margin-bottom: 10px !important;
+}
+
+.shadow-text {
+	text-shadow: 1px 1px 2px #000000;
+}
+
+.form-value {
+	padding-top: 7px;
+}
+
+.progress-total {
+    height: 28px;
+    margin-top: 6px;
+}
+
+.progress-total div span.shadow-text {
+    font-size: 12pt;
+    margin-top: 10px;
+    vertical-align: text-top;
+}
+
+.panel-subtitle {
+	font-weight: normal;
+	font-size: 10pt;
+}
+
+.wrap-center {
+	text-align: center;
+}
+
+.modal-pagination {
+	margin: 5px 0 !important;
+}
+
+.help-block {
+	font-size: 9pt;
+}
+
+table tbody tr.discarded td {
+	color: #B1B1B1;
+}
+
+.nav-pills {
+	margin: 0 30px 20px;
+}
+
+.nav-pills li a {
+  margin: 0 5px;
+  padding: 10px 40px;
+}
+
+.centered-pills { text-align:center; }
+.centered-pills ul.nav-pills { display:inline-block; }
+.centered-pills li { display:inline; }
+.centered-pills a { float:left; }
+* html .centered-pills ul.nav-pills { display:inline; } /* IE6 */
+*+html .centered-pills ul.nav-pills { display:inline; } /* IE7 */
+
+table tbody tr td.danger {
+	background-color: #E36C6C !important;
+}
+
+table tbody tr td.warning {
+	background-color: #F8E37F !important;
+}
+
+table tbody tr td.success {
+	background-color: #86CB6C !important;
+}
+
+table thead tr th a i.glyphicon {
+	float: right;
+	margin-right: 10px;
+}
+
+div.scrolled-table {
+	height: 300px;
+	overflow-y: auto;
+}
+
+table.table-hover {
+	cursor: pointer;
+}
+
+
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+	background-color: #D9EDF7;
+}
+
+table tbody tr.selected td {
+	background-color: #428BCA !important;
+}
+
+.form-group div {
+	margin-top: 8px;
+}
+
+.datepicker {
+	z-index: 1051 !important;
+}
+
+#txtFechaNacimiento2 {
+	background: url("../images/calendar-icon.png") no-repeat scroll 100% 0px #FFFFFF;
+}
+
+#txtFechaIngreso{
+		background: url("../images/calendar-icon.png") no-repeat scroll 100% 0px #FFFFFF;
+}
+
+a.alt-link, a.alt-link:hover, a.alt-link:active, a.alt-link:focus  {
+	color: #428BCA;
+	font-weight: bold;
+}

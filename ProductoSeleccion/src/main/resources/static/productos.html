@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html ng-app="ProductoApp">
+<head>
+<meta charset="UTF-8">
+<title>Administración de Productos</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap-theme.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/css/bootstrap-spinner.css" rel="stylesheet" type="text/css" />
+<link href="/css/datepicker3.css" rel="stylesheet" type="text/css" />
+<link href="/css/select2.css" rel="stylesheet" type="text/css" />
+<link href="/css/select2-bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/css/styles.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/js/respond.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/js/angularjs-1.2.16.min.js"></script>
+<script type="text/javascript"
+	src="/js/controllers/controllers.producto.js"></script>
+
+<!--[if lte IE 8]>
+<script type="text/javascript">
+    $(document).ready(function() {
+        angular.bootstrap(document);
+    });
+</script>
+<![endif]-->
+</head>
+<body ng-controller="productoCtrl" ng-init="">
+	<div class="alert alert-dismissible" ng-class="alerta.clase" role="alert" ng-show="alerta.visible">
+		<button type="button" class="close" ng-click="hideAlert()"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<strong>{{alerta.titulo}}</strong> {{alerta.contenido}}
+	</div>
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Administraci&oacute;n de Productos</h3>
+			</div>
+			<div class="panel-body panel-body-scrollable">
+				<table class="table table-striped table-condensed table-bordered"
+					ng-table="tableParams" id="tabla">
+					<thead>
+						<tr><th>Seleccionar</th>
+							<th>Código</th>
+							<th>Nombre</th>
+							<th>cantidad en Existencia</th>
+							<th>Precio unitario</th>
+							<th>destacado</th>
+							<th colspan="2">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="prod in productos | filter: filtro">
+							<td> <input type="checkbox" class="custom-control-input" ng-model="prod.guardado"></td>
+							<td>{{prod.codigo}}</td>
+							<td>{{prod.nombre}}</td>
+							<td>{{prod.cantidadExistencia}}</td>
+							<td>{{prod.precioUnitario}}</td>
+							<td> <input type="checkbox" class="custom-control-input" ng-model="prod.destacado"></td>
+							<td><span><a class="link float-left"
+									href="javascript:void(0);" ng-click="openDialog('edit', prod)">Editar</a>
+									&nbsp; <a class="link float-left" href="javascript:void(0);"
+									ng-click="delProd(prod)">Borrar</a> </span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel-footer">
+				<input id="prodSearch" name="prodSearch"
+					class="form-control search-box" ng-model="filtro"
+					placeholder="Escriba el texto a buscar" />
+
+				<button type="button" class="btn btn-default"
+					ng-click="getProductos()">Refrescar</button>
+				<button type="button" class="btn btn-primary"
+					ng-click="openDialog('add', null)">Agregar nuevo</button>
+				<button type="button" class="btn btn-primary">Guardar Cambios</button>
+			
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="dlgAddProd" role="dialog"
+		aria-labelledby="dlgEditProd">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="addProdForm" name="addProdForm" class="form-horizontal"
+					role="form">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Agregar/Editar Producto</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="txtProdName" class="col-sm-4 control-label">Nombre</label>
+							<div class="col-sm-8">
+								<input id="txtProdName" name="prodName" class="form-control"
+									type="text" maxlength="250" width="250"
+									ng-model="addProdData.nombre" autofocus required
+									ng-disabled="loading" autofocus />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="txtProdCExistencia" class="col-sm-4 control-label">Cantidad
+								en existencia</label>
+							<div class="col-sm-8">
+								<input id="txtProdCExistencia" name="prodCExistencia"
+									class="form-control" type="number" maxlength="50" width="50"
+									ng-model="addProdData.cantidadExistencia" autofocus required
+									ng-disabled="loading" autofocus />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="txtProdPUnitario" class="col-sm-4 control-label">Precio
+								Unitario</label>
+							<div class="col-sm-8">
+								<input id="txtProdPUnitario" name="prodPUnitario"
+									class="form-control" type="number" maxlength="9" width="9"
+									ng-model="addProdData.precioUnitario" min="0.01" step="0.01" max="2500" required ng-disabled="loading"
+									value="0" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="txtProdCategoria" name="prodCategoria"
+								class="col-sm-4 control-label">Categoria</label>
+							<div class="col-sm-8">
+								<select name="cmbCategoria" id="cmbCategoria"
+      								ng-options="cat.nombre for cat in categorias" ng-model="addProdData.categoria"></select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary"
+							ng-click="saveProd()"
+							ng-disabled="loading || addProdForm.$invalid">Guardar
+							cambios</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
